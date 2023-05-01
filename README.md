@@ -3,7 +3,7 @@ The webapp and enhanced version of the [Crypti](https://github.com/1337Farhan/Cr
 <br/><br/>
 
 ## 1. Introduction 👋
-Developed by a team consisting of Me, @Anas-Elhounsri, and @mosman4, CryptiWeb is an online version of my previouse project [Crypti](https://github.com/1337Farhan/Crypti).
+Developed by a team consisting of Me, [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/), and [@mosman4](https://github.com/mosman4/), CryptiWeb is an online version of my previouse project [Crypti](https://github.com/1337Farhan/Crypti).
 <br/><br/>
 
 ## 2. Setup
@@ -16,7 +16,7 @@ There are three steps to host CryptiWeb on your local machine.
 
 - Setup environment variables in your terminal
 
-    `export SECRET_KEY="<some_uuid4_token>";`
+    `export SECRET_KEY="<your_django_uuid4_secret>";`
     
     `export AWS_S3_ACCESS_KEY_ID="<your_s3_access_key_id>";`
 
@@ -36,7 +36,7 @@ Finally you can run `python3.11 manage.py runserver`.
 <br/><br/>
 
 ## 3. Differences from - the OG - Crpyti 📈
-CryptiWeb is a webapp (This repo) developed using The Django Framwork to allow more users to get to know and try the project. It realizes a Long Shot Term Memory (LSTM) model [Crypti-LSTM](https://github.com/Anas-Elhounsri/Crypti-LSTM) to perform time series prediction instead of linear regression, and hosted on Amazon Web Services (AWS) with an architecture designed by @Anas-Elhounsri. And finally the project is availabe as a mobile app [CryptiMobile](https://github.com/mosman4/cryptimobile) designed by @mosman4.
+CryptiWeb is a webapp (This repo) developed using The Django Framwork to allow more users to get to know and try the project. It realizes a Long Shot Term Memory (LSTM) model [Crypti-LSTM](https://github.com/Anas-Elhounsri/Crypti-LSTM) to perform time series prediction instead of linear regression, and hosted on Amazon Web Services (AWS) with an architecture designed by [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/). And finally the project is availabe as a mobile app [CryptiMobile](https://github.com/mosman4/cryptimobile) designed by [@mosman4](https://github.com/mosman4/).
 <br/><br/>
 
 ## 4. Known issues 🐛
