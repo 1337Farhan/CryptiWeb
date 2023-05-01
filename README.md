@@ -57,7 +57,7 @@ We are planning to achieve the following by the end of '23
 - Conduct testing and re-adjustments on the model
 <br></br>
 
-## 6. Disclaimer ❗
+## 6. Disclaimer ⚠
 This project is for educational, entertainment, and testing reasons only, it is by no means a financial advice/tool, and it should not be relied on for any finanial decisions.
 <br/><br/>
 
