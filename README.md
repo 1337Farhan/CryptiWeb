@@ -1,3 +1,5 @@
+[![Django CI](https://github.com/1337Farhan/CryptiWeb/actions/workflows/django.yml/badge.svg)](https://github.com/1337Farhan/CryptiWeb/actions/workflows/django.yml)
+
 # CryptiWeb
 The webapp and enhanced version of the [Crypti](https://github.com/1337Farhan/Crypti) project.
 <br/><br/>
