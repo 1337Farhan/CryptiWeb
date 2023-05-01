@@ -9,15 +9,15 @@ Developed by a team consisting of Me, [@Anas-Elhounsri](https://github.com/Anas-
 ## 2. Setup
 *Note: you need to have our AWS setup ready before doing this, refer to [Crypti-LSTM](https://github.com/Anas-Elhounsri/Crypti-LSTM)*
 
-There are three steps to host CryptiWeb on your local machine.
+There are four steps to host CryptiWeb on your local machine.
 - Create a conda environment with requirements.txt *(ipython is recommended)*
   
     `conda env create -f environment.yml python=3.11 ipython`
 
-- Setup environment variables in your terminal
+- Create a secret key from [djecrety](https://djecrety.ir/) and replace the secret key in `settings.py`
 
-    `export SECRET_KEY="<your_django_uuid4_secret>";`
-    
+- Setup environment variables in your terminal
+      
     `export AWS_S3_ACCESS_KEY_ID="<your_s3_access_key_id>";`
 
     `export AWS_SECRET_ACCESS_KEY="<your_s3_secret_key>";`
