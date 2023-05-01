@@ -5,7 +5,7 @@ The webapp and enhanced version of the [Crypti](https://github.com/1337Farhan/Cr
 <br/><br/>
 
 ## 1. Introduction 👋
-Developed by a team consisting of Me, [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/), and [@mosman4](https://github.com/mosman4/), CryptiWeb is an online version of my previouse project [Crypti](https://github.com/1337Farhan/Crypti).
+Developed by a team consisting of Me, [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/), and [@mosman4](https://github.com/mosman4/), CryptiWeb is an online version of my previous project [Crypti](https://github.com/1337Farhan/Crypti).
 <br/><br/>
 
 ## 2. Setup
