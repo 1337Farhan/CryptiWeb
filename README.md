@@ -38,7 +38,7 @@ Finally you can run `python3.11 manage.py runserver`.
 <br/><br/>
 
 ## 3. Differences from - the OG - Crpyti 📈
-CryptiWeb is a webapp (This repo) developed using The Django Framwork to allow more users to get to know and try the project. It realizes a Long Shot Term Memory (LSTM) model [Crypti-LSTM](https://github.com/Anas-Elhounsri/Crypti-LSTM) to perform time series prediction instead of linear regression, and hosted on Amazon Web Services (AWS) with an architecture designed by [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/). And finally the project is availabe as a mobile app [CryptiMobile](https://github.com/mosman4/cryptimobile) designed by [@mosman4](https://github.com/mosman4/).
+CryptiWeb is a webapp (This repo) developed using The Django Framwork to allow more users to get to know and try the project. It realizes a Long Short Term Memory (LSTM) model [Crypti-LSTM](https://github.com/Anas-Elhounsri/Crypti-LSTM) to perform time series prediction instead of linear regression, developed and hosted on Amazon Web Services (AWS) with an architecture designed by [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/). And finally the project is availabe as a mobile app [CryptiMobile](https://github.com/mosman4/cryptimobile) designed by [@mosman4](https://github.com/mosman4/).
 <br/><br/>
 
 ## 4. Known issues 🐛
