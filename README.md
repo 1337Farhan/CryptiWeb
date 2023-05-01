@@ -20,7 +20,7 @@ There are four steps to host CryptiWeb on your local machine.
 
 - Setup environment variables in your terminal
       
-    `export AWS_S3_ACCESS_KEY_ID="<your_s3_access_key_id>";`
+    `export AWS_ACCESS_KEY_ID="<your_s3_access_key_id>";`
 
     `export AWS_SECRET_ACCESS_KEY="<your_s3_secret_key>";`
 
