@@ -18,8 +18,8 @@ from django.urls import include, path
 from .views import MainView, CoinView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     path("", MainView.as_view(), name="main"),
     path("coin/<int:pk>", CoinView.as_view(), name="coin"),
-    path("api/v1/", include("coin_predictions.urls"))
+    path("api/v1/", include("coin_predictions.urls")),
 ]

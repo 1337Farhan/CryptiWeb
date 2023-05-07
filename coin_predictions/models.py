@@ -1,6 +1,8 @@
 from django.db import models
 import json
+
 # Create your models here.
+
 
 class CoinPrediction(models.Model):
     coin_name = models.CharField(max_length=255, blank=False, null=False)
@@ -16,15 +18,12 @@ class CoinPrediction(models.Model):
         verbose_name = "Coin Prediction"
         verbose_name_plural = "Coin Predictions"
 
-
         def __str__(self):
             return f"""{self.coin_name} + prediction instance updated on {self.last_updated}, 
                         prediction performed on {self.prediction_date}"""
-        
 
     def set_predicted_prices(self, predicted_prices):
         self.predicted_prices = json.dumps(predicted_prices)
 
     def get_predicted_prices(self):
         return json.loads(self.predicted_prices)
-
