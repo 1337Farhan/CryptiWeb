@@ -1,9 +1,11 @@
+[![Django CI](https://github.com/1337Farhan/CryptiWeb/actions/workflows/django.yml/badge.svg)](https://github.com/1337Farhan/CryptiWeb/actions/workflows/django.yml)
+
 # CryptiWeb
 The webapp and enhanced version of the [Crypti](https://github.com/1337Farhan/Crypti) project.
 <br/><br/>
 
 ## 1. Introduction 👋
-Developed by a team consisting of Me, [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/), and [@mosman4](https://github.com/mosman4/), CryptiWeb is an online version of my previouse project [Crypti](https://github.com/1337Farhan/Crypti).
+Developed by a team consisting of Me, [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/), and [@mosman4](https://github.com/mosman4/), CryptiWeb is an online version of my previous project [Crypti](https://github.com/1337Farhan/Crypti).
 <br/><br/>
 
 ## 2. Setup
@@ -14,11 +16,11 @@ There are four steps to host CryptiWeb on your local machine.
   
     `conda env create -f environment.yml python=3.11 ipython`
 
-- Create a secret key from [djecrety](https://djecrety.ir/) and replace the secret key in `settings.py`
+- Create a secret key from [djecrety](https://djecrety.ir/) and replace the `SECRET_KEY` in `settings.py`
 
 - Setup environment variables in your terminal
       
-    `export AWS_S3_ACCESS_KEY_ID="<your_s3_access_key_id>";`
+    `export AWS_ACCESS_KEY_ID="<your_s3_access_key_id>";`
 
     `export AWS_SECRET_ACCESS_KEY="<your_s3_secret_key>";`
 
@@ -36,7 +38,7 @@ Finally you can run `python3.11 manage.py runserver`.
 <br/><br/>
 
 ## 3. Differences from - the OG - Crpyti 📈
-CryptiWeb is a webapp (This repo) developed using The Django Framwork to allow more users to get to know and try the project. It realizes a Long Shot Term Memory (LSTM) model [Crypti-LSTM](https://github.com/Anas-Elhounsri/Crypti-LSTM) to perform time series prediction instead of linear regression, and hosted on Amazon Web Services (AWS) with an architecture designed by [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/). And finally the project is availabe as a mobile app [CryptiMobile](https://github.com/mosman4/cryptimobile) designed by [@mosman4](https://github.com/mosman4/).
+CryptiWeb is a webapp (This repo) developed using The Django Framwork to allow more users to get to know and try the project. It realizes a Long Short Term Memory (LSTM) model [Crypti-LSTM](https://github.com/Anas-Elhounsri/Crypti-LSTM) to perform time series prediction instead of linear regression, developed and hosted on Amazon Web Services (AWS) with an architecture designed by [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/). And finally the project is availabe as a mobile app [CryptiMobile](https://github.com/mosman4/cryptimobile) designed by [@mosman4](https://github.com/mosman4/).
 <br/><br/>
 
 ## 4. Known issues 🐛
@@ -55,7 +57,7 @@ We are planning to achieve the following by the end of '23
 - Conduct testing and re-adjustments on the model
 <br></br>
 
-## 6. Disclaimer ❗
+## 6. Disclaimer ⚠
 This project is for educational, entertainment, and testing reasons only, it is by no means a financial advice/tool, and it should not be relied on for any finanial decisions.
 <br/><br/>
 
