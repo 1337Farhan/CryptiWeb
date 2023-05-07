@@ -8,7 +8,7 @@ def update_coins():
     s3 = boto3.resource(
         service_name='s3',
         region_name=settings.AWS_DEFAULT_REGION,
-        aws_access_key_id=settings.AWS_S3_ACCESS_KEY_ID,
+        aws_access_key_id=settings.AWS_ACCESS_KEY_ID,
         aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY,
     )
 
@@ -24,6 +24,8 @@ def update_coins():
             coin_name = coin_data["coin_name"],
         )
 
+        coin.mse = float(coin_data["mse"])
+        coin.rmse = float(coin_data["rmse"])
         coin.set_predicted_prices(coin_data["prediction_price_list"])
         coin.prediction_date = datetime.fromisoformat(coin_data["timestamp"])
         coin.save()
