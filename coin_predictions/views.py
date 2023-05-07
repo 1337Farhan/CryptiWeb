@@ -16,6 +16,7 @@ class CoinPredictionAPIView(APIView):
             - /api/v1/get_coin_names/ : returns list of coins available on CryptiWeb.
             - /api/v1/get_coin_data/<coin_name>  : return a json object of a specific coin.
             - /api/v1/get_coin_predicted_prices/<coin_name>  : returns a serialized prediction list, provided the coin name.
+            - /api/v1/get_all_coin_data/ : returns a list of coin_prediction objects.
 
     """
     allowed_methods = ["GET"]
@@ -23,7 +24,8 @@ class CoinPredictionAPIView(APIView):
     allowed_request_types = [
         "get_coin_names",
         "get_coin_data",
-        "get_coin_predicted_prices"
+        "get_coin_predicted_prices",
+        "get_all_coin_data"
     ]
 
     def get(self, request, request_type=default_request_type, coin_name=None, format=None):
@@ -56,6 +58,23 @@ class CoinPredictionAPIView(APIView):
                     "prediction_date": coin_prediction.prediction_date.isoformat(),
                     }
                 return Response(data)
-        
+            
+            elif request_type == "get_all_coin_data":
+                coin_predictions = CoinPrediction.objects.all()
+                data = []
+                for coin_prediction in coin_predictions:
+                    data.append(
+                        {
+                            "title": coin_prediction.coin_name,
+                            "predicted_prices": json.loads(coin_prediction.predicted_prices),
+                            "prediction_date": coin_prediction.prediction_date.isoformat(),
+                            "mse": coin_prediction.mse,
+                            "rmse": coin_prediction.rmse,
+                        }
+                    )
+                return Response(data)
+
+            else: return Response("Request is not allowed.")
+
         else:
             return Response("Request type is not allowed.", status=403)
