@@ -14,7 +14,7 @@ Developed by a team consisting of Me, [@Anas-Elhounsri](https://github.com/Anas-
 There are four steps to host CryptiWeb on your local machine.
 - Create a conda environment with requirements.txt *(ipython is recommended)*
   
-    `conda env create -f environment.yml python=3.11 ipython`
+    `conda env create -f requirements.txt python=3.11 ipython`
 
 - Create a secret key from [djecrety](https://djecrety.ir/) and replace the `SECRET_KEY` in `settings.py`
 
