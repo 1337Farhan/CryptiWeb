@@ -1,68 +1,161 @@
 {% extends 'base.html' %}
+{% load humanize %}
+
 {% block body_content %}
-    <div class="row mb-3">
-        <h3>Symbol: {{ object.coin_name }}</h3>
+
+<div class="row mb-3">
+  <h3>
+    Symbol: <a href="{% if coin_data.coin_page %}coin_data.coin_page{% else %}#{% endif %}">{{ object.coin_name | title }}</a>
+    <img
+      src="{{ coin_data.coin_image_link }}"
+      class="img-fluid rounded-top"
+      alt="icon"
+      width="25"
+    />
+  </h3>
+  <h4>M. Cap: {{ coin_data.market_cap | intcomma }} USD</h4>
+  <div class="row">
+    <div class="col-3">
+      24h Change: 
+      <i class=
+        "
+          bi
+          {% if coin_data.change_24h > 0 %}
+            bi-arrow-up text-success
+          {% elif coin_data.change_24h < 0 %}
+            bi-arrow-down text-danger
+          {% else %}
+          {% endif %}
+        "
+      ></i>   
+      <span class=
+        "
+          {% if coin_data.change_24h > 0 %}
+            text-success
+          {% elif coin_data.change_24h < 0 %}
+            text-danger
+          {% else %}
+            text-warning
+          {% endif %}
+        "
+      >{{ coin_data.change_24h | floatformat:"4" }}%</span>
     </div>
-    <div class="card border-dark bg-light">
-        <div class="card-body">
-            <div id="chart" class="p-2">
-            </div>
-        </div>
+    <div class="col-3">
+      30d Change:
+      <i class=
+        "
+          bi
+          {% if coin_data.change_24h > 0 %}
+            bi-arrow-up text-success
+          {% elif coin_data.change_24h < 0 %}
+            bi-arrow-down text-danger
+          {% else %}
+          {% endif %}
+        "
+      ></i>   
+      <span class=
+        "
+          {% if coin_data.change_24h > 0 %}
+            text-success
+          {% elif coin_data.change_24h < 0 %}
+            text-danger
+          {% else %}
+            text-warning
+          {% endif %}
+        "
+      >{{ coin_data.change_30d | floatformat:"4" }}%</span>
     </div>
-    <div class="container">
-        <div class="row my-5">
-            <div class="col-6">
-                <h4>Last Predicted Price: </h4>
-            </div>
-            <div class="col-6">
-                <h4>RMSE: </h4>
-            </div>
-        </div>
-        <div class="row my-5">
-            <div class="col-6">
-                <h4>Current Price: </h4>
-            </div>
-            <div class="col-6">
-                <h4>MSE: </h4>
-            </div>
-        </div>
-        {% comment %} <div class="row">
-          {{ object.get_predicted_prices }}
-        </div> {% endcomment %}
+  </div>
+  <h5 class="mt-2">
+    <i class="bi bi-github"></i>
+    <a href="{{ coin_data.coin_github_link }}">Github</a>
+  </h5>
+</div>
+<div class="card border-dark bg-light">
+  <div class="card-body">
+    <div id="chart" class="p-2"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="row my-5">
+    <div class="col-6">
+      <h4>Today's Predicted Price: {{ todays_predicted_price | floatformat:"4" }} USD</h4>
     </div>
-{% endblock body_content %}
+    <div class="col-6">
+      <h4>RMSE: {{ rmse | floatformat:"4" }}</h4>
+    </div>
+  </div>
+  <div class="row my-5">
+    <div class="col-6">
+      <h4>Current Price: {{ current_real_price | floatformat:"4" }} USD</h4>
+    </div>
+    <div class="col-6">
+      <h4>MSE: {{ mse | floatformat:"4" }}</h4>
+    </div>
+  </div>
+</div>
+
+{% endblock body_content %} 
 {% block scripts %}
-    <script>
-        var options = {
-            series: [{
-            name: 'Real Price',
-            data: {{ object.get_predicted_prices }}
-          }, {
-            name: 'Prediction Price',
-            data: {{ object.get_predicted_prices }}
-          }],
-            chart: {
-            height: 500,
-            type: 'area'
-          },
-          dataLabels: {
-            enabled: false
-          },
-          stroke: {
-            curve: 'smooth'
-          },
-          xaxis: {
-            type: 'integer',
-            categories: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-          },
-          colors: ['#336FAB', '#5491CD'],
-          tooltip: {
-            x: {
-              format: 'dd/MM/yy HH:mm'
-            },
-          },
-          };
-          var chart = new ApexCharts(document.querySelector("#chart"), options);
-          chart.render();
-    </script>
+<script>
+  var options = {
+      series: [{
+      name: 'Real Price',
+      data: {{ real_prices }}
+    }, {
+      name: 'Prediction Price',
+      data: {{ object.get_predicted_prices }}
+    }],
+    
+      chart: {
+      height: 500,
+      type: 'area'
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      curve: 'smooth'
+    },
+    xaxis: {
+      type: 'integer',
+      categories: {{ days }},
+      labels: {
+        formatter: function (value) {
+          if(value === 1){
+            return value+"st";
+          }
+          else if(value === 2){
+            return value+"nd";
+          }
+          else if(value === 3){
+            return value+"rd";
+          }
+          else if(value === 31){
+            return value+"st";
+          }
+          else{
+            return value+"th"
+          }
+        }
+      },
+    },
+    yaxis: {
+      type: 'double',
+      labels: {
+        formatter: function (value) {
+          return "$"+value.toFixed(4);
+        }
+      },
+    },
+    colors: ['#D73F28', '#28C0D7'],
+    tooltip: {
+      x: {
+        format: 'dd/MM/yy HH:mm'
+      },
+    },
+    };
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+</script>
 {% endblock scripts %}

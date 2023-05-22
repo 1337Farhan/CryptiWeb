@@ -1,23 +1,35 @@
 {% extends 'base.html' %}
 {% block body_content %}
-    <input type="text" placeholder="Search" class="list-group-item my-4 rounded border border-dark"></input>
+    <div class="row mb-2">
+        <div class="col-8">
+            <h4>
+                Welcome to Crypti!
+            </h4>
+            <p>
+                Crypti is a platform for crypto enthusiasts, aiming to help starters to get some information about price actions, using algorithms (currently LSTM)
+            </p>
+        </div>
+    </div>
+
+    <input type="text" placeholder="Search" class="list-group-item my-4 rounded border border-dark" data-bs-toggle="tooltip" 
+    data-bs-placement="top" title="Coming Soon!" disabled></input>
 
     <div class="card border-dark bg-light">
         <div class="card-body ">
             <li class="list-group-item my-2 rounded bg-light border-0">
                 <div class="row">
-                    <div class="col-1">
-                        <h5>Symbol</h5>
+                    <div class="col-4">
+                        <h3>Symbol</h3>
                     </div>
                 </div>
             </li>
             {% for coin in coins %}
                 <li class="list-group-item my-4 rounded border border-1 border-dark">
                     <div class="row">
-                        <div class="col-2 d-flex">
+                        <div class="col-4 d-flex">
                             <h5 class="my-auto">{{ coin.coin_name }}</h5>
                         </div>
-                        <div class="col-10" align="right"><a href={% url 'coin' pk=coin.pk %} class="btn btn-sm btn-light border border-dark">View</a></div>
+                        <div class="col-8" align="right"><a href={% url 'coin' pk=coin.pk %} class="btn btn-sm btn-light border border-dark">View <i class="bi bi-arrow-right-short"></i></a></div>
                     </div>
                 </li>
             {% endfor %}
