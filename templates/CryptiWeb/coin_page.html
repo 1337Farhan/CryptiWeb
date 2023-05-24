@@ -98,6 +98,27 @@
 {% endblock body_content %} 
 {% block scripts %}
 <script>
+  let my_list = [];
+  function formatJsDateToNormalDate(date){
+    console.log(date);
+    if(date !== null) {
+      const realMonth = date.getMonth() ;
+      let month = (realMonth < 10) ? '0' + realMonth : String(realMonth);
+      let day = (date.getDate() < 10) ? '0' + date.getDate() : String(date.getDate());
+      const year = date.getFullYear();
+
+      const formattedDate = [day, month, year].join('/');
+      return formattedDate;
+    }else {
+      return null;
+    }
+  }
+  {% for day in days %}
+    my_list.push(formatJsDateToNormalDate(new Date({{ day|date:"Y, m, d, H, i, s" }})));
+  {% endfor %}
+
+  let new_list = [...new Set(my_list)];
+
   var options = {
       series: [{
       name: 'Real Price',
@@ -118,25 +139,10 @@
       curve: 'smooth'
     },
     xaxis: {
-      type: 'integer',
-      categories: {{ days }},
+      categories: new_list,
       labels: {
         formatter: function (value) {
-          if(value === 1){
-            return value+"st";
-          }
-          else if(value === 2){
-            return value+"nd";
-          }
-          else if(value === 3){
-            return value+"rd";
-          }
-          else if(value === 31){
-            return value+"st";
-          }
-          else{
-            return value+"th"
-          }
+          return value
         }
       },
     },
@@ -149,11 +155,6 @@
       },
     },
     colors: ['#D73F28', '#28C0D7'],
-    tooltip: {
-      x: {
-        format: 'dd/MM/yy HH:mm'
-      },
-    },
     };
     var chart = new ApexCharts(document.querySelector("#chart"), options);
     chart.render();

@@ -37,12 +37,18 @@ class CoinView(DetailView):
 
         return real_prices
 
-    def get_num_days(self):
+    def get_days(self):
         coin = self.model.objects.get(pk=self.kwargs["pk"])
         num_days = monthrange(coin.prediction_date.year, coin.prediction_date.month)[1]
 
-        return num_days
-    
+        days = list()
+
+        for i in range(num_days):
+            date = coin.prediction_date + datetime.timedelta(days=i)
+            days.append(date)
+
+        return days
+
     def get_coin_data(self, coin_id):
         coin_data = self.cg.get_coin_by_id(
             id=coin_id, localization=False, 
@@ -70,14 +76,14 @@ class CoinView(DetailView):
         coin = context["object"]
         coin_data = self.get_coin_data(coin_id=coin.coin_name)
         today = datetime.datetime.now().day
-        days = [day + 1 for day in range(coin.prediction_date.day, self.get_num_days())]
+        prediction_days = self.get_days()
         real_prices = self.get_real_prices()
         context["coin_data"] = coin_data
         context["real_prices"] = real_prices
-        context["days"] = days
+        context["days"] = prediction_days
         context["rmse"] = coin.rmse
         context["mse"] = coin.mse
-        context["todays_predicted_price"] = coin.get_predicted_prices()[today-1]
+        context["todays_predicted_price"] = coin.get_predicted_prices()[today]
         context["current_real_price"] = real_prices[-1]
 
         return context
