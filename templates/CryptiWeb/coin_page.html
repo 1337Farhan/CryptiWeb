@@ -68,7 +68,7 @@
   </div>
   <h5 class="mt-2">
     <i class="bi bi-github"></i>
-    <a href="{{ coin_data.coin_github_link }}">Github</a>
+    <a href="{% if coin_data.coin_github_link %}coin_data.coin_github_link {% else %}#{% endif %}">Github</a>
   </h5>
 </div>
 <div class="card border-dark bg-light">
