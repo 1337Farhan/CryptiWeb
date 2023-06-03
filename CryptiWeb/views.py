@@ -1,10 +1,12 @@
 import datetime
 from typing import Any, Dict
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 
 from coin_predictions.models import CoinPrediction
 from pycoingecko import CoinGeckoAPI
 from calendar import monthrange
+import numpy as np
+import math
 
 class MainView(ListView):
     template_name = "CryptiWeb/main.html"
@@ -28,8 +30,10 @@ class CoinView(DetailView):
         coin = self.model.objects.get(pk=self.kwargs["pk"])
         prediction_day = coin.prediction_date.day
         today = datetime.datetime.now().day
-        day_range = today - prediction_day
+        day_range = abs(today - prediction_day)
+        
         data = self.cg.get_coin_market_chart_by_id(id=coin.coin_name, vs_currency="usd", days=day_range, interval="daily")
+
         real_prices = list()
 
         for price_data in data["prices"]:
@@ -56,20 +60,24 @@ class CoinView(DetailView):
             community_data=False, developer_data=False,
             sparkline=False    
         )
-
-        coin_data = {
+    
+        data = {
             "coin_image_link": coin_data.get("image").get("small"),
             "change_24h": coin_data.get("market_data").get("price_change_percentage_24h"), # Percentage
             "change_30d": coin_data.get("market_data").get("price_change_percentage_30d"), # Percentage
             "market_cap": coin_data.get("market_data").get("market_cap").get("usd")
         }
-        try: coin_data["coin_github_link"] =  coin_data.get("links").get("repos_url").get("github")[0] 
-        except: coin_data["coin_github_link"] = None
+        
+        try: data["coin_github_link"] =  coin_data.get("links").get("repos_url").get("github")[0] 
+        except: data["coin_github_link"] = "#"
 
-        try: coin_data["coin_page"] =  coin_data.get("links").get("homepage")[0]
-        except: coin_data["coin_page"] = None
+        try: data["coin_page"] =  coin_data.get("links").get("homepage")[0]
+        except: data["coin_page"] = "#"
 
-        return coin_data
+        try: data["coin_desc"] =  coin_data.get("description").get("en")
+        except: data["coin_desc"] = ""
+
+        return data
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -81,9 +89,11 @@ class CoinView(DetailView):
         context["coin_data"] = coin_data
         context["real_prices"] = real_prices
         context["days"] = prediction_days
-        context["rmse"] = coin.rmse
-        context["mse"] = coin.mse
+        context["rmse"] = math.sqrt(np.square(np.subtract(real_prices, coin.get_predicted_prices()[:len(real_prices)])).mean())
         context["todays_predicted_price"] = coin.get_predicted_prices()[today]
         context["current_real_price"] = real_prices[-1]
 
         return context
+    
+class AboutView(TemplateView):
+    template_name = "CryptiWeb/about.html"

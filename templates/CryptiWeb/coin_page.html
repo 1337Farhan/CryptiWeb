@@ -5,7 +5,7 @@
 
 <div class="row mb-3">
   <h3>
-    Symbol: <a href="{% if coin_data.coin_page %}coin_data.coin_page{% else %}#{% endif %}">{{ object.coin_name | title }}</a>
+    Symbol: <a href="{{ coin_data.coin_page }}">{{ object.coin_name | title }}</a>
     <img
       src="{{ coin_data.coin_image_link }}"
       class="img-fluid rounded-top"
@@ -14,6 +14,20 @@
     />
   </h3>
   <h4>M. Cap: {{ coin_data.market_cap | intcomma }} USD</h4>
+  <div class="row">
+    <div class="col mb-2">
+      <a data-bs-toggle="collapse" href="#description" role="button" aria-expanded="false" aria-controls="description">
+        Show more
+      </a>
+    </div>
+  </div>
+  <div class="collapse" id="description">
+    <div class="col">
+      <p>
+        {{coin_data.coin_desc | safe}}
+      </p>
+    </div>
+  </div>
   <div class="row">
     <div class="col-3">
       24h Change: 
@@ -68,7 +82,7 @@
   </div>
   <h5 class="mt-2">
     <i class="bi bi-github"></i>
-    <a href="{% if coin_data.coin_github_link %}coin_data.coin_github_link {% else %}#{% endif %}">Github</a>
+    <a href="{{coin_data.coin_github_link}}">Github</a>
   </h5>
 </div>
 <div class="card border-dark bg-light">
@@ -89,9 +103,9 @@
     <div class="col-6">
       <h4>Current Price: {{ current_real_price | floatformat:"4" }} USD</h4>
     </div>
-    <div class="col-6">
+    {% comment %} <div class="col-6">
       <h4>MSE: {{ mse | floatformat:"4" }}</h4>
-    </div>
+    </div> {% endcomment %}
   </div>
 </div>
 
@@ -127,7 +141,6 @@
       name: 'Prediction Price',
       data: {{ object.get_predicted_prices }}
     }],
-    
       chart: {
       height: 500,
       type: 'area'

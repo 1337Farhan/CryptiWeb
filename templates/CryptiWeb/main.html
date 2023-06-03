@@ -11,11 +11,12 @@
         </div>
     </div>
 
-    <input type="text" placeholder="Search" class="list-group-item my-4 rounded border border-dark" data-bs-toggle="tooltip" 
-    data-bs-placement="top" title="Coming Soon!" disabled></input>
+    <div id="tt" class="row m-0 p-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Coming Soon!">
+        <input type="text" placeholder="Search" class="list-group-item bg-white my-4 ps-3 p-2 rounded border border-dark" disabled></input>
+    </div>
 
     <div class="card border-dark bg-light">
-        <div class="card-body ">
+        <div class="card-body">
             <li class="list-group-item my-2 rounded bg-light border-0">
                 <div class="row">
                     <div class="col-4">
@@ -24,7 +25,7 @@
                 </div>
             </li>
             {% for coin in coins %}
-                <li class="list-group-item my-4 rounded border border-1 border-dark">
+                <li class="list-group-item my-4 p-2 bg-white rounded border border-1 border-dark">
                     <div class="row">
                         <div class="col-4 d-flex">
                             <h5 class="my-auto">{{ coin.coin_name | title }}</h5>
@@ -35,5 +36,10 @@
             {% endfor %}
         </div>
     </div>
-
 {% endblock body_content %}
+{% block scripts %}
+    <script type="module">
+        const exampleEl = document.getElementById('tt');
+        const tooltip = new bootstrap.Tooltip(exampleEl);
+    </script>
+{% endblock scripts %}

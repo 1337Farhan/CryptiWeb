@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from .views import MainView, CoinView
+from .views import MainView, CoinView, AboutView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", MainView.as_view(), name="main"),
     path("coin/<int:pk>", CoinView.as_view(), name="coin"),
     path("api/v1/", include("coin_predictions.urls")),
+    path("about/", AboutView.as_view(), name="about"),
 ]
