@@ -1,7 +1,7 @@
 [![Django CI](https://github.com/1337Farhan/CryptiWeb/actions/workflows/django.yml/badge.svg)](https://github.com/1337Farhan/CryptiWeb/actions/workflows/django.yml)
 
 # CryptiWeb
-The webapp and enhanced version of the [Crypti](https://github.com/1337Farhan/Crypti) project.
+The web app and enhanced version of the [Crypti](https://github.com/1337Farhan/Crypti) project.
 <br/><br/>
 
 ## 1. Introduction 👋
@@ -34,15 +34,15 @@ There are four steps to host CryptiWeb on your local machine.
 
     `>>> update_coins()`
 
-Finally you can run `python3.11 manage.py runserver`.
+Finally, you can run `python3.11 manage.py runserver`.
 <br/><br/>
 
 ## 3. Differences from - the OG - Crpyti 📈
-CryptiWeb is a webapp (This repo) developed using The Django Framwork to allow more users to get to know and try the project. It realizes a Long Short Term Memory (LSTM) model [Crypti-LSTM](https://github.com/Anas-Elhounsri/Crypti-LSTM) to perform time series prediction instead of linear regression, developed and hosted on Amazon Web Services (AWS) with an architecture designed by [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/). And finally the project is availabe as a mobile app [CryptiMobile](https://github.com/mosman4/cryptimobile) designed by [@mosman4](https://github.com/mosman4/).
+CryptiWeb is a web app (This repo) developed using The Django framework to allow more users to get to know and try the project. It realizes a Long Short Term Memory (LSTM) model [Crypti-LSTM](https://github.com/Anas-Elhounsri/Crypti-LSTM) to perform time series prediction instead of linear regression, developed and hosted on Amazon Web Services (AWS) with an architecture designed by [@Anas-Elhounsri](https://github.com/Anas-Elhounsri/). And finally, the project is available as a mobile app [CryptiMobile](https://github.com/mosman4/cryptimobile) designed by [@mosman4](https://github.com/mosman4/).
 <br/><br/>
 
 ## 4. Known issues 🐛
-Although we have moved from using linear regression to using LSTM, we are aware that our model is not accurate because it only consumes one variable (Price). In the near future, we are planning on updating our model to a Multivariate LSTM including more variables for more accurate forcasting results.
+Although we have moved from using linear regression to using LSTM, we know that our model is inaccurate because it only consumes one variable (Price). In the near future, we plan on updating our model to a Multivariate LSTM including more variables for more accurate forecasting results.
 
 Read more: 
 - [What are LSTMs](https://machinelearningmastery.com/gentle-introduction-long-short-term-memory-networks-experts/)
@@ -58,7 +58,7 @@ We are planning to achieve the following by the end of '23
 <br></br>
 
 ## 6. Disclaimer ⚠
-This project is for educational, entertainment, and testing reasons only, it is by no means a financial advice/tool, and it should not be relied on for any finanial decisions.
+This project is for educational, entertainment, and testing purposes only, it is by no means a financial advice/tool and should not be relied on for any financial decisions.
 <br/><br/>
 
-Finally, we will be more than happy to see your contribution.
+Finally, we will be more than happy to see your contributions.
